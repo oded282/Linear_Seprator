@@ -8,6 +8,16 @@ SEX_INDEX = 0
 
 
 def shuffle_unison(train_x, train_y):
+    """
+        Summery:
+            This function shuffle the arrays correspondent.
+        Arguments:
+            train_x [str]: The train_x array 3286X8.
+            train_y [str]: The train_y array 3286X1.
+        Returns:
+            shuffled_train_x [np.array]: Shuffled train_x array 3286X8 type=float.
+            shuffled_train_x [np.array]: Shuffled train_x array 3286X1 type=int.
+    """
     if len(train_x) != len(train_y):
         raise Exception('Error: train_x and train_y size does not match.')
     permutation = np.random.permutation(train_x.shape[0])
@@ -16,7 +26,15 @@ def shuffle_unison(train_x, train_y):
     return train_x, train_y
 
 
-def set_gender_value(data):
+def set_gender_value(data) -> np.array:
+    """
+        Summery:
+            This function set the gender feature to be float type.
+        Arguments:
+            data [np.array]: The train_x data array 3286X8.
+        Returns:
+            data [np.array]: The train_x data array with gender's set values 3286X8.
+    """
     for abalone in data:
         if abalone[SEX_INDEX] == 'M':
             abalone[SEX_INDEX] = MALE
@@ -29,7 +47,18 @@ def set_gender_value(data):
     return data.astype(np.float)
 
 
-def load_data(train_x, train_y):
+def load_data(train_x, train_y) -> (np.array, np.array):
+    """
+        Summery:
+            This function check if the files really exist and load the data from the file to arrays.
+        Arguments:
+            train_x [str]: The train_x file name.
+            train_x [str]: The train_y file name.
+        Returns:
+            shuffled_train_x [np.array]: Shuffled train_x array 3286X8 type=float.
+            shuffled_train_x [np.array]: Shuffled train_x array 3286X1 type=int.
+    """
+
     if not os.path.isfile(train_x) or not os.path.isfile(train_y):
         raise IOError('Error: One or both of the files does not exist.')
     data = np.genfromtxt(train_x, delimiter=',', dtype='unicode')
