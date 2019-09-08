@@ -4,7 +4,7 @@ import os
 MALE = 0.01
 FEMALE = 0.02
 INFANT = 0.03
-SEX_INDEX = 0
+GENDER_INDEX = 0
 
 
 def shuffle_unison(train_x, train_y):
@@ -36,12 +36,12 @@ def set_gender_value(data) -> np.array:
             data [np.array]: The train_x data array with gender's set values 3286X8.
     """
     for abalone in data:
-        if abalone[SEX_INDEX] == 'M':
-            abalone[SEX_INDEX] = MALE
-        elif abalone[SEX_INDEX] == 'F':
-            abalone[SEX_INDEX] = FEMALE
-        elif abalone[SEX_INDEX] == 'I':
-            abalone[SEX_INDEX] = INFANT
+        if abalone[GENDER_INDEX] == 'M':
+            abalone[GENDER_INDEX] = MALE
+        elif abalone[GENDER_INDEX] == 'F':
+            abalone[GENDER_INDEX] = FEMALE
+        elif abalone[GENDER_INDEX] == 'I':
+            abalone[GENDER_INDEX] = INFANT
         else:
             raise Exception("Invalid gender")
     return data.astype(np.float)
